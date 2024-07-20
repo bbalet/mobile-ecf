@@ -15,7 +15,8 @@ public class TicketDetailResponse {
     public String day;
     @SerializedName("roomNumber")
     public String roomNumber;
-
+    @SerializedName("seats")
+    public String seats;
     @SerializedName("startDate")
     public Date startDate;
     @SerializedName("endDate")
@@ -98,6 +99,14 @@ public class TicketDetailResponse {
 
     public void setRoomNumber(String roomNumber) {
         this.roomNumber = roomNumber;
+    }
+
+    public String getSeats() {
+        return seats;
+    }
+
+    public void setSeats(String seats) {
+        this.seats = seats;
     }
 
     public Date getStartDate() {

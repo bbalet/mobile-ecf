@@ -69,12 +69,12 @@ public class MainActivity extends AppCompatActivity {
             txtUserInfo.setText("Bonjour " + firstname + " " + lastname + " !");
             cmdLogin.setVisibility(View.INVISIBLE);
             cmdLogout.setVisibility(View.VISIBLE);
-            cmdMyTickets.setVisibility(View.VISIBLE);
             if (this.role.equals("ROLE_EMPLOYEE")) {
                 cmdScanTicket.setVisibility(View.VISIBLE);
-                cmdMyTickets.setText("Gérer les incidents");
+                cmdMyTickets.setVisibility(View.INVISIBLE);
             } else {
                 cmdScanTicket.setVisibility(View.INVISIBLE);
+                cmdMyTickets.setVisibility(View.VISIBLE);
                 cmdMyTickets.setText("Mes tickets");
             }
         } else {

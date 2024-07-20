@@ -142,8 +142,6 @@ public class ScanTicketActivity extends AppCompatActivity {
                     imageView.setImageResource(R.drawable.failure);
                 }
 
-                // TODO : vérifier si on est connecté à internet
-                // https://www.tutlane.com/tutorial/android/android-internet-connection-status-with-examples#:~:text=Check%20Internet%20Connection%20Status,connection%20is%20available%20or%20not.
             } else {
                 // Echec du scan
                 Toast.makeText(this, "Scan Failed", Toast.LENGTH_SHORT).show();
