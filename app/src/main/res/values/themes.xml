@@ -1,8 +1,18 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
+    <color name="background">#FFF8E7</color>
+    <color name="primary">#228B22</color>
+    <color name="secondary">#FFD700</color>
+    <color name="success">#708090</color>
+    <color name="danger">#FF6347</color>
+    <color name="accent">#191970</color>
+
     <!-- Base application theme. -->
     <style name="Base.Theme.Cinephoria" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="android:windowBackground">@color/background</item>
     </style>
 
     <style name="Theme.Cinephoria" parent="Base.Theme.Cinephoria" />
