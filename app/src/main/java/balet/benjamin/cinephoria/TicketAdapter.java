@@ -8,10 +8,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.util.Log;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import balet.benjamin.cinephoria.model.TicketResponse;
@@ -19,6 +21,8 @@ import balet.benjamin.cinephoria.model.TicketResponse;
 public class TicketAdapter extends BaseAdapter {
     private Context context;
     private List<TicketResponse> tickets;
+
+    private final String TAG = this.getClass().getSimpleName();
 
     public TicketAdapter(Context context, List<TicketResponse> tickets) {
         this.context = context;
@@ -45,13 +49,25 @@ public class TicketAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.list_item_ticket, parent, false);
         }
-        TextView titleTextView = convertView.findViewById(R.id.titleTextView);
-        TextView startTimeTextView = convertView.findViewById(R.id.startTimeTextView);
+        ImageView imgViewPoster = convertView.findViewById(R.id.imgViewPoster);
+        TextView txtMovieTitleList = convertView.findViewById(R.id.txtMovieTitleList);
+        TextView txtSessionStartEnd = convertView.findViewById(R.id.txtSessionStartEnd);
+        TextView txtRoomAndSeats = convertView.findViewById(R.id.txtRoomAndSeats);
+
+        //Afficher les infos de la séance
         TicketResponse ticket = tickets.get(position);
-        titleTextView.setText(ticket.getMovieTitle());
-        SimpleDateFormat sdf = new SimpleDateFormat("EEEE d MMMM yyyy", Locale.FRENCH);
-        String formattedDate = sdf.format(ticket.getStartDate());
-        startTimeTextView.setText(formattedDate);
+        txtMovieTitleList.setText(ticket.getMovieTitle());
+        SimpleDateFormat sdf = new SimpleDateFormat("d/MM/yyyy HH:mm", Locale.FRENCH);
+        SimpleDateFormat edf = new SimpleDateFormat("HH:mm", Locale.FRENCH);
+        String startDate = sdf.format(ticket.getStartDate());
+        String endDate = edf.format(ticket.getEndDate());
+        txtSessionStartEnd.setText(ticket.getDay() + " - " + startDate + " - " + endDate);
+        txtRoomAndSeats.setText(ticket.getRoomNumber() + " - " + ticket.getSeats());
+
+        //Récupérer le poster du film
+        Log.d(TAG, "getView: " + "https://cinephoria.jorani.org/movies/" + ticket.getImdbId() + "/poster");
+        String imageUrl = "https://cinephoria.jorani.org/movies/" + ticket.getImdbId() + "/poster";
+        Picasso.get().load(imageUrl).into(imgViewPoster);
 
         // Gestion du clic sur l'élément de la liste
         convertView.setOnClickListener(v -> {
